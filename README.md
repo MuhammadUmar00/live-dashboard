@@ -126,10 +126,15 @@ This demo does not authenticate or connect to a real service. A production trans
 ## Tests
 
 ```sh
-pnpm test
+pnpm test                         # Unit tests with Vitest
+pnpm exec playwright install chromium  # One-time browser setup
+pnpm test:e2e                     # Browser automation with Playwright
+pnpm test:all                     # Run both suites
 ```
 
-Tests cover runtime validation, safe text handling, bounded history, filtering, empty batches, and ingestion-setting state. Build and runtime verification:
+Unit tests cover runtime validation, safe text handling, bounded history, filtering, empty batches, and ingestion-setting state. Playwright checks that the dashboard receives events and that pause/resume and filtering work in a real browser. The Playwright config starts a local Vite server for the tests.
+
+Build and manual runtime verification:
 
 ```sh
 pnpm build
